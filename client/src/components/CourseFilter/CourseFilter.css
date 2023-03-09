@@ -1,0 +1,26 @@
+.courseFilterContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.courseFilterContainer input {
+  width: 358px;
+  height: 33px;
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--dark-gray);
+  border-radius: var(--border-radius-1);
+}
+
+.courseFilterContainer button {
+  height: 33px;
+  padding: 0 var(--spacing-5);
+  border: 1px solid var(--primary);
+  border-radius: var(--border-radius-2);
+  color: var(--primary);
+  background-color: transparent;
+  font-weight: var(--font-bold);
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+}

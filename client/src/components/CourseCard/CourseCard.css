@@ -29,13 +29,3 @@
   line-height: 19px;
   color: var(--dark-gray);
 }
-
-.courseCardActionButton {
-  height: 33px;
-  padding: 0 var(--spacing-5);
-  border-radius: var(--border-radius-2);
-  border: 1px solid var(--secondary);
-  color: var(--secondary);
-  text-transform: uppercase;
-  background-color: transparent;
-}

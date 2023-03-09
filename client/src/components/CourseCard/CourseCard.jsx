@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import './CourseCard.css';
 
 import clockImg from '../../assets/clock.png';
+import Button, { BUTTON_VARIANT } from '../Button';
 
+import './CourseCard.css';
 function CourseCard({ imageUrl, name, category, description, duration }) {
   return (
     <div className='courseCardContainer'>
@@ -15,8 +16,10 @@ function CourseCard({ imageUrl, name, category, description, duration }) {
         <img src={clockImg} alt='Ícone de relógio' />
         <p>{duration}h</p>
       </div>
-      
-      <button className='courseCardActionButton'>Ver detalhes</button>
+
+      <Button variant={BUTTON_VARIANT.SECONDARY_OUTLINED} onClick={() => console.log('aa')}>
+        Ver detalhes
+      </Button>
     </div>
   );
 }

@@ -7,15 +7,16 @@ const useCourseList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const response = await apiService.get('/courses');
-      setError(response.error);
-      setData(response.data);
-      setIsLoading(false);
-    };
+  const fetchData = async (filter) => {
+    setIsLoading(true);
+    const paramFilter = filter ? `?name_like=${filter}` : '';
+    const response = await apiService.get(`/courses${paramFilter}`);
+    setError(response.error);
+    setData(response.data);
+    setIsLoading(false);
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -23,6 +24,7 @@ const useCourseList = () => {
     courses: data,
     isLoading,
     error,
+    fetchData,
   };
 };
 

@@ -8,7 +8,7 @@ function CourseCard({ imageUrl, name, category, description, duration }) {
   return (
     <div className='courseCardContainer'>
       <div className='courseCardHeader'>
-        {imageUrl && <img src={imageUrl} alt={`Imagem curso ${name}`} />}
+        {imageUrl && <img width={50} src={imageUrl} alt={`Imagem curso ${name}`} />}
         <h3>{name}</h3>
       </div>
 

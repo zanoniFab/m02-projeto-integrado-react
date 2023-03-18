@@ -3,6 +3,7 @@
   padding: 0 var(--spacing-7);
   background-color: var(--light-gray);
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 

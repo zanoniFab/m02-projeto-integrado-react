@@ -12,12 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 
 function App() {
-  const [globalState, setGlobalState] = useState({
-    user: {
-      name: "Romeu",
-      isAdmin: true,
-    },
-  });
+  const [globalState, setGlobalState] = useState();
 
   return (
     <GlobalStateProvider value={[globalState, setGlobalState]}>

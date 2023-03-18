@@ -6,8 +6,6 @@ function CourseDetailsPage() {
   const { id } = useParams();
   const { course } = useCourseDetails(id);
 
-  console.log({ id, course });
-
   return (
     <div className="courseDetailsPageContainer">
       <h2>Detalhes do Curso</h2>

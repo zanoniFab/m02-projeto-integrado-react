@@ -6,11 +6,10 @@ import "./Navbar.css";
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
+
   const setUserInfo = useSetUserInfo();
   const userInfo = useUserInfo();
   const isLoggedIn = userInfo?.name;
-
-  console.log(location);
 
   const handleNavigateLogin = () => {
     navigate("/login");

@@ -20,10 +20,6 @@
   border-radius: var(--border-radius-1);
 }
 
-.loginCenterBox button {
-  font-weight: var(--font-bold);
-}
-
 .loginCenterBox h2.title {
   font-family: "Inter";
   font-style: normal;

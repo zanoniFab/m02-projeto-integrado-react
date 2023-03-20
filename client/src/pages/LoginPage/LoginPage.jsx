@@ -32,21 +32,23 @@ function LoginPage() {
 
   return (
     <div className="loginPageContainer">
-      <h2>Login</h2>
-      <input
-        type="text"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-        placeholder="Usuário"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        placeholder="Senha"
-      />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <button onClick={handleLoginAction}>Entrar</button>
+      <div className="loginCenterBox">
+        <h2>Login</h2>
+        <input
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          placeholder="Usuário"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Senha"
+        />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button onClick={handleLoginAction}>Entrar</button>
+      </div>
     </div>
   );
 }

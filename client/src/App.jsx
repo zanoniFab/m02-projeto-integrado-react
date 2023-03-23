@@ -3,6 +3,7 @@ import PageWrapper from './components/PageWrapper';
 import Footer from './components/Footer';
 import { GlobalStateProvider } from './hooks/useGlobalState';
 import HomePage from './pages/HomePage';
+import { useState } from "react";
 
 function App() {
 

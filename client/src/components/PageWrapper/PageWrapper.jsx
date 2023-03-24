@@ -1,7 +1,12 @@
-import './PageWrapper.css';
+import PropTypes from 'prop-types'
+import './PageWrapper.css'
 
-function PageWrapper({ children }) {
-  return <main className='pageWrapperContainer'>{children}</main>;
+function PageWrapper ({ children }) {
+  return <main className='pageWrapperContainer'>{children}</main>
 }
 
-export default PageWrapper;
+PageWrapper.propTypes = {
+  children: PropTypes.node.isRequired
+}
+
+export default PageWrapper

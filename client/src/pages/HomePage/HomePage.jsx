@@ -1,18 +1,18 @@
-import { Spinner } from "phosphor-react";
+import { Spinner } from 'phosphor-react'
 
-import CourseFilter from "../../components/CourseFilter";
-import CourseList from "../../components/CourseList";
-import Button, { BUTTON_VARIANT } from "../../components/Button";
-import useCourseList from "../../hooks/useCourseList";
-import { useUserIsAdmin } from "../../hooks/useUserInfo";
+import CourseFilter from '../../components/CourseFilter'
+import CourseList from '../../components/CourseList'
+import Button, { BUTTON_VARIANT } from '../../components/Button'
+import useCourseList from '../../hooks/useCourseList'
+import { useUserIsAdmin } from '../../hooks/useUserInfo'
 
-import emptyState from "../../assets/empty.svg";
+import emptyState from '../../assets/empty.svg'
 
-import "./HomePage.css";
+import './HomePage.css'
 
-function HomePage() {
-  const { courses, error, isLoading, fetchData } = useCourseList();
-  const userIsAdmin = useUserIsAdmin();
+function HomePage () {
+  const { courses, error, isLoading, fetchData } = useCourseList()
+  const userIsAdmin = useUserIsAdmin()
 
   return (
     <div className="homePageContainer">
@@ -39,7 +39,7 @@ function HomePage() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

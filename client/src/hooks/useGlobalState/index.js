@@ -1,5 +1,5 @@
 export {
   GlobalStateProvider,
   useGlobalState,
-  useSetGlobalState,
-} from "./useGlobalState";
+  useSetGlobalState
+} from './useGlobalState'

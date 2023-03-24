@@ -4,6 +4,8 @@ import Footer from './components/Footer';
 import { GlobalStateProvider } from './hooks/useGlobalState';
 import HomePage from './pages/HomePage';
 import { useState } from "react";
+import CourseDetailsPage from "./pages/CourseDetailsPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
@@ -15,15 +17,19 @@ function App() {
   });
 
   return (
-    <GlobalStateProvider value={[globalState, setGlobalState]}>
-      <Navbar />
-
-      <PageWrapper>
-        <HomePage />
-      </PageWrapper>
-
-      <Footer />
-    </GlobalStateProvider>
+    
+      <GlobalStateProvider value={[globalState, setGlobalState]}>
+        <Navbar />
+          <PageWrapper>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/course/:id" element={<CourseDetailsPage />} />
+              </Routes>
+            </BrowserRouter>
+          </PageWrapper>
+        <Footer />
+      </GlobalStateProvider>
   );
 }
 

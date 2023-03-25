@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import Card from '../../components/Card'
 import InputGroup from '../../components/InputGroup'
 import Button, { BUTTON_VARIANT } from '../../components/Button'
+import useCourseRegister from '../../hooks/useCourseRegister'
 
 import './CourseRegisterPage.css'
 
@@ -18,6 +20,8 @@ const schema = yup.object().shape({
 })
 
 function CourseRegisterPage () {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -34,8 +38,10 @@ function CourseRegisterPage () {
     resolver: yupResolver(schema)
   })
 
+  const { isSubmitting, registerCourse } = useCourseRegister()
+
   const onSubmit = (data) => {
-    console.log(data)
+    registerCourse(data)
   }
 
   return (
@@ -108,10 +114,10 @@ function CourseRegisterPage () {
 
               <div className="register-page-section-form-footer">
                 <div>
-                  <Button type="submit">Cadastrar</Button>
+                  <Button type="submit" disabled={isSubmitting}>Cadastrar</Button>
                 </div>
                 <div>
-                  <Button type="button" variant={BUTTON_VARIANT.PRIMARY_LINK}>
+                  <Button type="button" variant={BUTTON_VARIANT.PRIMARY_LINK} onClick={() => navigate('/')}>
                     Cancelar
                   </Button>
                 </div>

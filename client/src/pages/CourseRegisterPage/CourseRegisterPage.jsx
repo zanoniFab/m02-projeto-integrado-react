@@ -1,10 +1,43 @@
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
 import Card from '../../components/Card'
 import InputGroup from '../../components/InputGroup'
 import Button, { BUTTON_VARIANT } from '../../components/Button'
 
 import './CourseRegisterPage.css'
 
+const schema = yup.object().shape({
+  name: yup.string().required('Campo obrigatório'),
+  imageUrl: yup.string().url('Deve ser uma url').required('Campo obrigatório'),
+  category: yup.string().required('Campo obrigatório'),
+  description: yup.string().required('Campo obrigatório'),
+  duration: yup.number('Deve ser um número').required('Campo obrigatório'),
+  targetMarket: yup.string().required('Campo obrigatório')
+})
+
 function CourseRegisterPage () {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      name: '',
+      imageUrl: '',
+      category: '',
+      description: '',
+      duration: '',
+      targetMarket: ''
+    },
+    resolver: yupResolver(schema)
+  })
+
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
   return (
     <div className="register-page-container">
       <section className="register-page-section">
@@ -12,17 +45,29 @@ function CourseRegisterPage () {
           <div className="register-page-section-card">
             <h1 className="register-page-section-title">Cadastrar Curso</h1>
 
-            <form className="register-page-section-form">
+            <form
+              className="register-page-section-form"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <div className="register-page-section-form-row">
                 <div className="register-page-section-form-column">
-                  <InputGroup labelText="Nome" placeholder="Nome do curso" />
+                  <InputGroup
+                    labelText="Nome"
+                    placeholder="Nome do curso"
+                    helperText={errors?.name?.message}
+                    {...register('name')}
+                  />
                   <InputGroup
                     labelText="Duração"
                     placeholder="Duração do curso"
+                    helperText={errors?.duration?.message}
+                    {...register('duration')}
                   />
                   <InputGroup
                     labelText="Descrição"
                     placeholder="Descrição do curso"
+                    helperText={errors?.description?.message}
+                    {...register('description')}
                   />
                 </div>
 
@@ -30,14 +75,20 @@ function CourseRegisterPage () {
                   <InputGroup
                     labelText="Url ícone"
                     placeholder="Url contendo ícone"
+                    helperText={errors?.imageUrl?.message}
+                    {...register('imageUrl')}
                   />
                   <InputGroup
                     labelText="Categoria"
                     placeholder="Categoria do curso"
+                    helperText={errors?.category?.message}
+                    {...register('category')}
                   />
                   <InputGroup
                     labelText="Público alvo"
                     placeholder="Público alvo do curso"
+                    helperText={errors?.targetMarket?.message}
+                    {...register('targetMarket')}
                   />
                 </div>
               </div>
@@ -57,10 +108,10 @@ function CourseRegisterPage () {
 
               <div className="register-page-section-form-footer">
                 <div>
-                  <Button>Cadastrar</Button>
+                  <Button type="submit">Cadastrar</Button>
                 </div>
                 <div>
-                  <Button variant={BUTTON_VARIANT.PRIMARY_LINK}>
+                  <Button type="button" variant={BUTTON_VARIANT.PRIMARY_LINK}>
                     Cancelar
                   </Button>
                 </div>

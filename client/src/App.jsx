@@ -25,6 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/course/:id" element={<CourseDetailsPage />} />
+                <Route path="*" element={<div>Página não encontrada</div>} />
               </Routes>
             </BrowserRouter>
           </PageWrapper>

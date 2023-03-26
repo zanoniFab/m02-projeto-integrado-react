@@ -19,17 +19,17 @@ function App() {
   return (
     
       <GlobalStateProvider value={[globalState, setGlobalState]}>
-        <Navbar />
-          <PageWrapper>
-            <BrowserRouter>
+        <BrowserRouter>
+          <Navbar />
+            <PageWrapper>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/course/:id" element={<CourseDetailsPage />} />
                 <Route path="*" element={<div>Página não encontrada</div>} />
               </Routes>
-            </BrowserRouter>
-          </PageWrapper>
-        <Footer />
+            </PageWrapper>
+          <Footer />
+        </BrowserRouter>
       </GlobalStateProvider>
   );
 }

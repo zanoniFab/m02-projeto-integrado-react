@@ -8,6 +8,7 @@ function CourseList({ list }) {
       {list.map((course) => (
         <li key={course.id}>
           <CourseCard
+            id={course.id}
             imageUrl={course.imageUrl}
             name={course.name}
             category={course.category}
@@ -17,8 +18,8 @@ function CourseList({ list }) {
         </li>
       ))}
     </ul>
-  );
-}
+  )
+};
 
 CourseList.propTypes = {
   list: PropTypes.arrayOf(

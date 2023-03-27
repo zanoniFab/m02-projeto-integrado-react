@@ -1,6 +1,8 @@
-import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Trash } from 'phosphor-react'
 import * as yup from 'yup'
 
 import Card from '../../components/Card'
@@ -20,12 +22,14 @@ const schema = yup.object().shape({
 })
 
 function CourseRegisterPage () {
+  const [content, setContent] = useState({ value: '', error: '' })
   const navigate = useNavigate()
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    control
   } = useForm({
     defaultValues: {
       name: '',
@@ -38,10 +42,36 @@ function CourseRegisterPage () {
     resolver: yupResolver(schema)
   })
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'contents'
+  })
+
   const { isSubmitting, registerCourse } = useCourseRegister()
 
   const onSubmit = (data) => {
     registerCourse(data)
+  }
+
+  const handleAddContent = () => {
+    if (content.value) {
+      append({ id: new Date().getTime(), text: content.value })
+      setContent({ value: '', error: '' })
+      return
+    }
+
+    setContent((prev) => ({ ...prev, error: 'Campo obrigatório' }))
+  }
+
+  const handleChangeContent = (event) => {
+    setContent({
+      value: event.target.value,
+      error: event.target.value ? '' : 'Campo obrigatório'
+    })
+  }
+
+  const handleDeleteContent = (index) => {
+    remove(index)
   }
 
   return (
@@ -103,21 +133,54 @@ function CourseRegisterPage () {
                 <InputGroup
                   labelText="Conteúdo"
                   placeholder="Conteúdo do curso"
+                  value={content.value}
+                  helperText={content.error}
+                  onChange={handleChangeContent}
                 />
 
                 <div>
-                  <Button variant={BUTTON_VARIANT.SECONDARY_OUTLINED}>
+                  <Button
+                    type="button"
+                    variant={BUTTON_VARIANT.SECONDARY_OUTLINED}
+                    onClick={handleAddContent}
+                  >
                     Adicionar
                   </Button>
                 </div>
               </div>
 
+              <ul className="register-page-section-form-group-content">
+                {fields.map((field, index) => (
+                  <li
+                    key={field.id}
+                    className="register-page-section-form-group-content-item"
+                  >
+                    <p>{field.text}</p>
+
+                    <Button
+                      isIconButton
+                      type="button"
+                      variant={BUTTON_VARIANT.SECONDARY_OUTLINED}
+                      onClick={() => handleDeleteContent(index)}
+                    >
+                      <Trash size={16} />
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+
               <div className="register-page-section-form-footer">
                 <div>
-                  <Button type="submit" disabled={isSubmitting}>Cadastrar</Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    Cadastrar
+                  </Button>
                 </div>
                 <div>
-                  <Button type="button" variant={BUTTON_VARIANT.PRIMARY_LINK} onClick={() => navigate('/')}>
+                  <Button
+                    type="button"
+                    variant={BUTTON_VARIANT.PRIMARY_LINK}
+                    onClick={() => navigate('/')}
+                  >
                     Cancelar
                   </Button>
                 </div>

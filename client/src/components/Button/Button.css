@@ -82,3 +82,8 @@
   border: 1px solid var(--secondary);
   background-color: var(--secondary-outlined);
 }
+
+.icon-button {
+  border-radius: var(--border-radius-3);
+  padding: var(--spacing-3);
+}

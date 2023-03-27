@@ -1,25 +1,27 @@
-import { Spinner } from "phosphor-react";
+import { Spinner } from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
 
-import CourseFilter from "../../components/CourseFilter";
-import CourseList from "../../components/CourseList";
-import Button, { BUTTON_VARIANT } from "../../components/Button";
-import useCourseList from "../../hooks/useCourseList";
-import { useUserIsAdmin } from "../../hooks/useUserInfo";
+import CourseFilter from '../../components/CourseFilter'
+import CourseList from '../../components/CourseList'
+import Button, { BUTTON_VARIANT } from '../../components/Button'
+import useCourseList from '../../hooks/useCourseList'
+import { useUserIsAdmin } from '../../hooks/useUserInfo'
 
-import emptyState from "../../assets/empty.svg";
+import emptyState from '../../assets/empty.svg'
 
-import "./HomePage.css";
+import './HomePage.css'
 
-function HomePage() {
-  const { courses, error, isLoading, fetchData } = useCourseList();
-  const userIsAdmin = useUserIsAdmin();
+function HomePage () {
+  const { courses, error, isLoading, fetchData } = useCourseList()
+  const userIsAdmin = useUserIsAdmin()
+  const navigate = useNavigate()
 
   return (
     <div className="homePageContainer">
       <div className="listHeader">
         <CourseFilter onFilter={fetchData} />
         {userIsAdmin && (
-          <Button variant={BUTTON_VARIANT.SECONDARY}>Cadastrar Curso</Button>
+          <Button variant={BUTTON_VARIANT.SECONDARY} onClick={() => navigate('/course/register')}>Cadastrar Curso</Button>
         )}
       </div>
 
@@ -39,7 +41,7 @@ function HomePage() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

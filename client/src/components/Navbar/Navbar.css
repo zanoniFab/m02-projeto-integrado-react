@@ -4,6 +4,7 @@
   background-color: var(--light-gray);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .navbarContainer h1 {

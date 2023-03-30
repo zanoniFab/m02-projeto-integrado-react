@@ -13,7 +13,7 @@ import CourseDetailsPage from './pages/CourseDetailsPage'
 import NotFoundPage from './pages/NotFoundPage'
 import CourseRegisterPage from './pages/CourseRegisterPage'
 
-function App () {
+function App() {
   const [globalState, setGlobalState] = useState()
 
   return (

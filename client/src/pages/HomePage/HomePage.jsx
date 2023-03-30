@@ -11,7 +11,7 @@ import emptyState from '../../assets/empty.svg'
 
 import './HomePage.css'
 
-function HomePage () {
+function HomePage() {
   const { courses, error, isLoading, fetchData } = useCourseList()
   const userIsAdmin = useUserIsAdmin()
   const navigate = useNavigate()
@@ -21,7 +21,12 @@ function HomePage () {
       <div className="listHeader">
         <CourseFilter onFilter={fetchData} />
         {userIsAdmin && (
-          <Button variant={BUTTON_VARIANT.SECONDARY} onClick={() => navigate('/course/register')}>Cadastrar Curso</Button>
+          <Button
+            variant={BUTTON_VARIANT.SECONDARY}
+            onClick={() => navigate('/course/register')}
+          >
+            Cadastrar Curso
+          </Button>
         )}
       </div>
 

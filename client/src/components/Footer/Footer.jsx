@@ -1,8 +1,8 @@
 import './Footer.css'
 
-function Footer () {
+function Footer() {
   return (
-    <footer className='footerContainer'>
+    <footer className="footerContainer">
       <p>DEVinCursos | {new Date().getFullYear()}</p>
     </footer>
   )

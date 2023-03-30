@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import CourseCard from '../CourseCard'
 import './CourseList.css'
 
-function CourseList ({ list }) {
+function CourseList({ list }) {
   return (
     <ul className="courseListContainer">
       {list.map((course) => (

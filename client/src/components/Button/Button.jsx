@@ -4,7 +4,7 @@ import { BUTTON_VARIANT } from './ButtonVariant'
 
 import './Button.css'
 
-function Button ({
+function Button({
   children,
   variant = BUTTON_VARIANT.PRIMARY,
   isIconButton = false,

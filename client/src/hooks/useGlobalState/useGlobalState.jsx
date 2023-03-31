@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-const GlobalState = createContext([]); //criar o contexto
+const GlobalState = createContext([]); // criar o contexto
 
 export const GlobalStateProvider = GlobalState.Provider;
 
@@ -14,6 +14,6 @@ export function useGlobalState() {
 }
 
 export function useSetGlobalState() {
-  const [globalState, setGlobalState] = useGlobalStateContext();
+  const [, setGlobalState] = useGlobalStateContext();
   return setGlobalState;
 }

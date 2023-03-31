@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// cria hook para salvar um curso
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { apiService } from '../../services/api'
+import { apiService } from "../../services/api";
 
 const useCourseRegister = () => {
-  const [data, setData] = useState()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState(null)
-  const navigate = useNavigate()
+  const [data, setData] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const registerCourse = async (course) => {
-    setIsSubmitting(true)
-    const response = await apiService.post('/courses', course)
-    console.log(response)
-    setError(response.error)
-    setData(response.data)
-    setIsSubmitting(false)
+    setIsSubmitting(true);
+    const response = await apiService.post("/courses", course);
+    setError(response.error);
+    setData(response.data);
+    setIsSubmitting(false);
+    
     if (response.error) {
-      alert(response.error)
-      return
+      alert(response.error);
+      return;
     }
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   return {
     course: data,
     isSubmitting,
     error,
-    registerCourse
-  }
-}
+    registerCourse,
+  };
+};
 
-export default useCourseRegister
+export default useCourseRegister;

@@ -1,5 +1,5 @@
-import svg404 from '../../assets/404.svg'
-import './NotFoundPage.css'
+import svg404 from "../../assets/404.svg";
+import "./NotFoundPage.css";
 
 function NotFoundPage() {
   return (
@@ -7,7 +7,7 @@ function NotFoundPage() {
       <img src={svg404} alt="404" />
       <h2>Página não encontrada</h2>
     </div>
-  )
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;

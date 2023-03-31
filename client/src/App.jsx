@@ -1,35 +1,34 @@
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import PageWrapper from './components/PageWrapper'
 import Footer from './components/Footer'
 import { GlobalStateProvider } from './hooks/useGlobalState'
 import HomePage from './pages/HomePage'
-import { useState } from 'react'
+import LoginPage from './pages/LoginPage'
 import CourseDetailsPage from './pages/CourseDetailsPage'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import NotFoundPage from './pages/NotFoundPage'
+import CourseRegisterPage from './pages/CourseRegisterPage'
 
 function App () {
-  const [globalState, setGlobalState] = useState({
-    user: {
-      name: 'Fabiane',
-      isAdmin: true
-    }
-  })
+  const [globalState, setGlobalState] = useState()
 
   return (
-
-      <GlobalStateProvider value={[globalState, setGlobalState]}>
+    <GlobalStateProvider value={[globalState, setGlobalState]}>
+      <BrowserRouter>
         <Navbar />
           <PageWrapper>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/course/:id" element={<CourseDetailsPage />} />
-                <Route path="*" element={<div>Página não encontrada</div>} />
-              </Routes>
-            </BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/course/register" element={<CourseRegisterPage />} />
+              <Route path="/course/:id" element={<CourseDetailsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
           </PageWrapper>
         <Footer />
-      </GlobalStateProvider>
+      </BrowserRouter>
+    </GlobalStateProvider>
   )
 }
 

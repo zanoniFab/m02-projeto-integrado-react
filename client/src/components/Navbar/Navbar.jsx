@@ -1,14 +1,33 @@
 import './Navbar.css';
+import { Link, useNavigate } from "react-router-dom";
+import { useUserInfo, useSetUserInfo } from "../../hooks/useUserInfo";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const setUserInfo = useSetUserInfo();
+  const userInfo = useUserInfo();
+
+  const handleNavigateLogin = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    setUserInfo();
+    handleNavigateLogin();
+  };
+
   return (
     <header className='navbarContainer'>
-      <div className='navbarLogoBox'>
+      <Link to="/" className="navbarLogoBox">
         <img src='/logo.png' alt='Logo' />
         <h1>DEVinCursos</h1>
-      </div>
+      </Link>
+      {userInfo?.name ? (
+        <button onClick={handleLogout}>Sair</button>
+      ) : (
+        <button onClick={handleNavigateLogin}>Entrar</button>
+      )}
     </header>
   );
 }
-
 export default Navbar;

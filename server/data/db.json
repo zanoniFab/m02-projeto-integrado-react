@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "Fabiane",
+      "password": "123",
+      "isAdmin": true
+    },
+    {
+      "id": 2,
+      "username": "Romeu",
+      "password": "321",
+      "isAdmin": false
+    }
+  ],
   "courses": [
     {
       "id": 1,

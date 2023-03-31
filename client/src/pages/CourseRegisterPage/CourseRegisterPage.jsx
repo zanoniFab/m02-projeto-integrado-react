@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup"; // add yup resolver: faz o vinculo do yup schema com o formulário para fazer a validação
 import { Trash } from "phosphor-react";
-import * as yup from "yup";
+import * as yup from "yup"; // add yup
 import Card from "../../components/Card";
 import InputGroup from "../../components/InputGroup";
 import Button, { BUTTON_VARIANT } from "../../components/Button";
 import useCourseRegister from "../../hooks/useCourseRegister";
 import "./CourseRegisterPage.css";
-
-const schema = yup.object().shape({
+// o register passar uma propriedade ref, mas não podemos usar ref em componentes funcionais 
+const schema = yup.object().shape({ // schema de validadores do formulário
   name: yup.string().required("Campo obrigatório"),
   imageUrl: yup.string().url("Deve ser uma url").required("Campo obrigatório"),
   category: yup.string().required("Campo obrigatório"),
@@ -37,7 +37,7 @@ function CourseRegisterPage() {
       duration: "",
       targetMarket: "",
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema), // add o schema no resolver
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -88,7 +88,7 @@ function CourseRegisterPage() {
                   <InputGroup
                     labelText="Nome"
                     placeholder="Nome do curso"
-                    helperText={errors?.name?.message}
+                    helperText={errors?.name?.message} // msg de erro configurada
                     {...register("name")} // colocar em todos os inputs conforme o nome do "defaultValues"
                   />
                   <InputGroup

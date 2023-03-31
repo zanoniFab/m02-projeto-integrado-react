@@ -10,6 +10,7 @@ Para clonar o repositório é preciso executar o comando
 git clone git@github.com:Devin-ilog/m02-projeto-integrado-react.git
 ```
 
+
 ## Pasta **client**
 
 A pasta client possui a aplicação do front-end contendo uma aplicação criada com React

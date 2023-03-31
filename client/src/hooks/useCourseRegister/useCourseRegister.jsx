@@ -1,3 +1,4 @@
+// cria hook para salvar um curso
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,10 +13,10 @@ const useCourseRegister = () => {
   const registerCourse = async (course) => {
     setIsSubmitting(true);
     const response = await apiService.post("/courses", course);
-    console.log(response);
     setError(response.error);
     setData(response.data);
     setIsSubmitting(false);
+    
     if (response.error) {
       alert(response.error);
       return;

@@ -45,7 +45,7 @@ function CourseRegisterPage() {
     name: "contents",
   });
 
-  const { isSubmitting, registerCourse } = useCourseRegister();
+  const { isSubmitting, registerCourse } = useCourseRegister(); // usa o hook
 
   const onSubmit = (data) => {
     registerCourse(data);

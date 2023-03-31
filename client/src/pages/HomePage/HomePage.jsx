@@ -24,10 +24,16 @@ function HomePage() {
 
       {!isLoading && !!error && <p>{error}</p>}
 
-      {!isLoading && !error && !!courses.length && <CourseList list={courses} />}
+      {!isLoading && !error && !!courses.length && (
+        <CourseList list={courses} />
+      )}
 
       {!isLoading && !error && !courses.length && (
-        <img height={500} src={emptyState} alt='Imagem de nenhum item encontrado' />
+        <img
+          height={500}
+          src={emptyState}
+          alt="Imagem de nenhum item encontrado"
+        />
       )}
     </div>
   );

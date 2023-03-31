@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import CourseCard from '../CourseCard';
-import './CourseList.css';
+import PropTypes from "prop-types";
+import CourseCard from "../CourseCard";
+import "./CourseList.css";
 function CourseList({ list }) {
   return (
-    <ul className='courseListContainer'>
+    <ul className="courseListContainer">
       {list.map((course) => (
         <li key={course.id}>
           <CourseCard
@@ -11,12 +11,12 @@ function CourseList({ list }) {
             imageUrl={course.imageUrl}
             name={course.name}
             category={course.category}
-@@ -17,8 +18,8 @@ function CourseList({ list }) {
+          />
         </li>
       ))}
     </ul>
-  )
-};
+  );
+}
 
 CourseList.propTypes = {
   list: PropTypes.arrayOf(

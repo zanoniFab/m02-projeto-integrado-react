@@ -1,78 +1,78 @@
-import { useState } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { Trash } from 'phosphor-react'
-import * as yup from 'yup'
+import { useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Trash } from "phosphor-react";
+import * as yup from "yup";
 
-import Card from '../../components/Card'
-import InputGroup from '../../components/InputGroup'
-import Button, { BUTTON_VARIANT } from '../../components/Button'
-import useCourseRegister from '../../hooks/useCourseRegister'
+import Card from "../../components/Card";
+import InputGroup from "../../components/InputGroup";
+import Button, { BUTTON_VARIANT } from "../../components/Button";
+import useCourseRegister from "../../hooks/useCourseRegister";
 
-import './CourseRegisterPage.css'
+import "./CourseRegisterPage.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required('Campo obrigatório'),
-  imageUrl: yup.string().url('Deve ser uma url').required('Campo obrigatório'),
-  category: yup.string().required('Campo obrigatório'),
-  description: yup.string().required('Campo obrigatório'),
-  duration: yup.number('Deve ser um número').required('Campo obrigatório'),
-  targetMarket: yup.string().required('Campo obrigatório')
-})
+  name: yup.string().required("Campo obrigatório"),
+  imageUrl: yup.string().url("Deve ser uma url").required("Campo obrigatório"),
+  category: yup.string().required("Campo obrigatório"),
+  description: yup.string().required("Campo obrigatório"),
+  duration: yup.number("Deve ser um número").required("Campo obrigatório"),
+  targetMarket: yup.string().required("Campo obrigatório"),
+});
 
 function CourseRegisterPage() {
-  const [content, setContent] = useState({ value: '', error: '' })
-  const navigate = useNavigate()
+  const [content, setContent] = useState({ value: "", error: "" });
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    control
+    control,
   } = useForm({
     defaultValues: {
-      name: '',
-      imageUrl: '',
-      category: '',
-      description: '',
-      duration: '',
-      targetMarket: ''
+      name: "",
+      imageUrl: "",
+      category: "",
+      description: "",
+      duration: "",
+      targetMarket: "",
     },
-    resolver: yupResolver(schema)
-  })
+    resolver: yupResolver(schema),
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'contents'
-  })
+    name: "contents",
+  });
 
-  const { isSubmitting, registerCourse } = useCourseRegister()
+  const { isSubmitting, registerCourse } = useCourseRegister();
 
   const onSubmit = (data) => {
-    registerCourse(data)
-  }
+    registerCourse(data);
+  };
 
   const handleAddContent = () => {
     if (content.value) {
-      append({ id: new Date().getTime(), text: content.value })
-      setContent({ value: '', error: '' })
-      return
+      append({ id: new Date().getTime(), text: content.value });
+      setContent({ value: "", error: "" });
+      return;
     }
 
-    setContent((prev) => ({ ...prev, error: 'Campo obrigatório' }))
-  }
+    setContent((prev) => ({ ...prev, error: "Campo obrigatório" }));
+  };
 
   const handleChangeContent = (event) => {
     setContent({
       value: event.target.value,
-      error: event.target.value ? '' : 'Campo obrigatório'
-    })
-  }
+      error: event.target.value ? "" : "Campo obrigatório",
+    });
+  };
 
   const handleDeleteContent = (index) => {
-    remove(index)
-  }
+    remove(index);
+  };
 
   return (
     <div className="register-page-container">
@@ -91,19 +91,19 @@ function CourseRegisterPage() {
                     labelText="Nome"
                     placeholder="Nome do curso"
                     helperText={errors?.name?.message}
-                    {...register('name')}
+                    {...register("name")}
                   />
                   <InputGroup
                     labelText="Duração"
                     placeholder="Duração do curso"
                     helperText={errors?.duration?.message}
-                    {...register('duration')}
+                    {...register("duration")}
                   />
                   <InputGroup
                     labelText="Descrição"
                     placeholder="Descrição do curso"
                     helperText={errors?.description?.message}
-                    {...register('description')}
+                    {...register("description")}
                   />
                 </div>
 
@@ -112,19 +112,19 @@ function CourseRegisterPage() {
                     labelText="Url ícone"
                     placeholder="Url contendo ícone"
                     helperText={errors?.imageUrl?.message}
-                    {...register('imageUrl')}
+                    {...register("imageUrl")}
                   />
                   <InputGroup
                     labelText="Categoria"
                     placeholder="Categoria do curso"
                     helperText={errors?.category?.message}
-                    {...register('category')}
+                    {...register("category")}
                   />
                   <InputGroup
                     labelText="Público alvo"
                     placeholder="Público alvo do curso"
                     helperText={errors?.targetMarket?.message}
-                    {...register('targetMarket')}
+                    {...register("targetMarket")}
                   />
                 </div>
               </div>
@@ -179,7 +179,7 @@ function CourseRegisterPage() {
                   <Button
                     type="button"
                     variant={BUTTON_VARIANT.PRIMARY_LINK}
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate("/")}
                   >
                     Cancelar
                   </Button>
@@ -190,7 +190,7 @@ function CourseRegisterPage() {
         </Card>
       </section>
     </div>
-  )
+  );
 }
 
-export default CourseRegisterPage
+export default CourseRegisterPage;

@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-import { BUTTON_VARIANT } from './ButtonVariant'
+import { BUTTON_VARIANT } from "./ButtonVariant";
 
-import './Button.css'
+import "./Button.css";
 
 function Button({
   children,
@@ -12,12 +12,12 @@ function Button({
 }) {
   return (
     <button
-      className={`button ${variant} ${isIconButton ? 'icon-button' : ''}`}
+      className={`button ${variant} ${isIconButton ? "icon-button" : ""}`}
       {...props}
     >
       {children}
     </button>
-  )
+  );
 }
 
 Button.propTypes = {
@@ -28,9 +28,9 @@ Button.propTypes = {
     BUTTON_VARIANT.PRIMARY_OUTLINED,
     BUTTON_VARIANT.SECONDARY,
     BUTTON_VARIANT.SECONDARY_LINK,
-    BUTTON_VARIANT.SECONDARY_OUTLINED
+    BUTTON_VARIANT.SECONDARY_OUTLINED,
   ]),
-  isIconButton: PropTypes.bool
-}
+  isIconButton: PropTypes.bool,
+};
 
-export default Button
+export default Button;

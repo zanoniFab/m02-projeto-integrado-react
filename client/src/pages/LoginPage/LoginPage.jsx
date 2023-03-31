@@ -15,7 +15,7 @@ function LoginPage() {
   const handleLoginAction = async () => {
     setError(null);
     const response = await apiService.get(
-      `/users?username=${username}&password=${password}`
+      `/users?username=${username}&password=${password}`,
     );
     if (response?.data?.length) {
       const { username, isAdmin } = response.data[0];

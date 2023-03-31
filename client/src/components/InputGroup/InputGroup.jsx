@@ -1,12 +1,12 @@
-import { forwardRef, useMemo } from 'react'
+import { forwardRef, useMemo } from "react";
 
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-import './InputGroup.css'
+import "./InputGroup.css";
 
 const InputGroup = forwardRef(
   ({ id, labelText, helperText, ...props }, ref) => {
-    const refId = useMemo(() => id ?? labelText, [id, labelText])
+    const refId = useMemo(() => id ?? labelText, [id, labelText]);
 
     return (
       <div className="container">
@@ -20,16 +20,16 @@ const InputGroup = forwardRef(
 
         {!!helperText && <span className="error">{helperText}</span>}
       </div>
-    )
-  }
-)
+    );
+  },
+);
 
 InputGroup.propTypes = {
   id: PropTypes.string,
   labelText: PropTypes.string,
-  helperText: PropTypes.string
-}
+  helperText: PropTypes.string,
+};
 
-InputGroup.displayName = 'InputGroup'
+InputGroup.displayName = "InputGroup";
 
-export default InputGroup
+export default InputGroup;

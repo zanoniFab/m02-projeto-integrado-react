@@ -1,4 +1,4 @@
-import './Navbar.css';
+import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserInfo, useSetUserInfo } from "../../hooks/useUserInfo";
 
@@ -17,9 +17,9 @@ function Navbar() {
   };
 
   return (
-    <header className='navbarContainer'>
+    <header className="navbarContainer">
       <Link to="/" className="navbarLogoBox">
-        <img src='/logo.png' alt='Logo' />
+        <img src="/logo.png" alt="Logo" />
         <h1>DEVinCursos</h1>
       </Link>
       {userInfo?.name ? (

@@ -26,7 +26,7 @@ function CourseRegisterPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, // para fazer a validação
     control,
   } = useForm({
     defaultValues: {
@@ -81,7 +81,7 @@ function CourseRegisterPage() {
 
             <form
               className="register-page-section-form"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onSubmit)} 
             >
               <div className="register-page-section-form-row">
                 <div className="register-page-section-form-column">
@@ -89,7 +89,7 @@ function CourseRegisterPage() {
                     labelText="Nome"
                     placeholder="Nome do curso"
                     helperText={errors?.name?.message}
-                    {...register("name")}
+                    {...register("name")} // colocar em todos os inputs conforme o nome do "defaultValues"
                   />
                   <InputGroup
                     labelText="Duração"
@@ -138,7 +138,7 @@ function CourseRegisterPage() {
 
                 <div>
                   <Button
-                    type="button"
+                    type="button" // coloca type="button" pra não submeter o formulário
                     variant={BUTTON_VARIANT.SECONDARY_OUTLINED}
                     onClick={handleAddContent}
                   >

@@ -4,6 +4,7 @@ import clockImg from '../../assets/clock.png';
 import Button, { BUTTON_VARIANT } from '../Button';
 
 import './CourseCard.css';
+
 function CourseCard({ id, imageUrl, name, category, description, duration }) {
   const navigate = useNavigate();
 
@@ -16,7 +17,6 @@ function CourseCard({ id, imageUrl, name, category, description, duration }) {
         {imageUrl && <img width={50} src={imageUrl} alt={`Imagem curso ${name}`} />}
         <h3>{name}</h3>
       </div>
-
       <div className='courseCardDuration'>
         <img src={clockImg} alt='Ícone de relógio' />
         <p>{duration}h</p>
@@ -28,7 +28,6 @@ function CourseCard({ id, imageUrl, name, category, description, duration }) {
     </div>
   );
 }
-
 CourseCard.propTypes = {
   name: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
@@ -36,5 +35,4 @@ CourseCard.propTypes = {
   duration: PropTypes.number.isRequired,
   imageUrl: PropTypes.string,
 };
-
 export default CourseCard;

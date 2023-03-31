@@ -1,3 +1,4 @@
+
 import "./CourseDetailsPage.css";
 import { useParams } from "react-router-dom";
 import useCourseDetails from "../../hooks/useCourseDetails";

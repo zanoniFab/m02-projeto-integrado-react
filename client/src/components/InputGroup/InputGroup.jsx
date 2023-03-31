@@ -1,26 +1,35 @@
-import PropTypes from 'prop-types';
+import { forwardRef, useMemo } from 'react'
 
-import './InputGroup.css';
+import PropTypes from 'prop-types'
 
-function InputGroup({ labelText, helperText, ...props }) {
-  return (
-    <div className='container'>
-      {labelText && (
-        <label htmlFor='input' className='label'>
-          {labelText}
-        </label>
-      )}
+import './InputGroup.css'
 
-      <input id='input' className='input' {...props} />
+const InputGroup = forwardRef(
+  ({ id, labelText, helperText, ...props }, ref) => {
+    const refId = useMemo(() => id ?? labelText, [id, labelText])
 
-      {!!helperText && <span className='error'>{helperText}</span>}
-    </div>
-  );
-}
+    return (
+      <div className="container">
+        {labelText && (
+          <label htmlFor={refId} className="label">
+            {labelText}
+          </label>
+        )}
+
+        <input id={refId} className="input" ref={ref} {...props} />
+
+        {!!helperText && <span className="error">{helperText}</span>}
+      </div>
+    )
+  }
+)
 
 InputGroup.propTypes = {
+  id: PropTypes.string,
   labelText: PropTypes.string,
-  helperText: PropTypes.string,
-};
+  helperText: PropTypes.string
+}
 
-export default InputGroup;
+InputGroup.displayName = 'InputGroup'
+
+export default InputGroup

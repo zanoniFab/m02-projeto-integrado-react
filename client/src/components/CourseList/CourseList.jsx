@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import CourseCard from '../CourseCard';
 import './CourseList.css';
-
 function CourseList({ list }) {
   return (
     <ul className='courseListContainer'>
@@ -12,9 +11,7 @@ function CourseList({ list }) {
             imageUrl={course.imageUrl}
             name={course.name}
             category={course.category}
-            description={course.description}
-            duration={course.duration}
-          />
+@@ -17,8 +18,8 @@ function CourseList({ list }) {
         </li>
       ))}
     </ul>
@@ -32,9 +29,7 @@ CourseList.propTypes = {
     }),
   ),
 };
-
 CourseList.defaultProps = {
   list: [],
 };
-
 export default CourseList;

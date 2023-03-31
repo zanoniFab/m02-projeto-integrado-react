@@ -1,41 +1,44 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import Button, { BUTTON_VARIANT } from '../Button';
-import InputGroup from '../InputGroup';
+import Button, { BUTTON_VARIANT } from '../Button'
+import InputGroup from '../InputGroup'
 
-import './CourseFilter.css';
+import './CourseFilter.css'
 
 function CourseFilter({ onFilter }) {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('')
 
   const handleChangeFilter = (event) => {
-    setFilter(event.target.value);
-  };
+    setFilter(event.target.value)
+  }
 
   const handleClickFilter = () => {
-    onFilter(filter);
-  };
+    onFilter(filter)
+  }
 
   return (
-    <div className='courseFilterContainer'>
+    <div className="courseFilterContainer">
       <InputGroup
-        type='text'
-        placeholder='Busque pelo nome do curso'
-        labelText='Buscar'
+        type="text"
+        placeholder="Busque pelo nome do curso"
+        labelText="Buscar"
         value={filter}
         onChange={handleChangeFilter}
       />
 
-      <Button variant={BUTTON_VARIANT.PRIMARY_OUTLINED} onClick={handleClickFilter}>
+      <Button
+        variant={BUTTON_VARIANT.PRIMARY_OUTLINED}
+        onClick={handleClickFilter}
+      >
         Buscar
       </Button>
     </div>
-  );
+  )
 }
 
 CourseFilter.propTypes = {
-  onFilter: PropTypes.func,
-};
+  onFilter: PropTypes.func
+}
 
-export default CourseFilter;
+export default CourseFilter

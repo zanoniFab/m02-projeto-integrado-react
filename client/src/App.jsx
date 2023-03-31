@@ -1,35 +1,35 @@
-import Navbar from "./components/Navbar";
-import PageWrapper from "./components/PageWrapper";
-import Footer from "./components/Footer";
-import { GlobalStateProvider } from "./hooks/useGlobalState";
-import HomePage from "./pages/HomePage";
-import { useState } from "react";
-import CourseDetailsPage from "./pages/CourseDetailsPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import PageWrapper from './components/PageWrapper'
+import Footer from './components/Footer'
+import { GlobalStateProvider } from './hooks/useGlobalState'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import CourseDetailsPage from './pages/CourseDetailsPage'
+import NotFoundPage from './pages/NotFoundPage'
+import CourseRegisterPage from './pages/CourseRegisterPage'
 
-function App() {
-  const [globalState, setGlobalState] = useState({
-    user: {
-      name: "Fabiane",
-      isAdmin: true,
-    },
-  });
+function App () {
+  const [globalState, setGlobalState] = useState()
 
   return (
     <GlobalStateProvider value={[globalState, setGlobalState]}>
-      <PageWrapper>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/course/:id" element={<CourseDetailsPage />} />
-            <Route path="*" element={<div>Página não encontrada</div>} />
-          </Routes>
-        </BrowserRouter>
-      </PageWrapper>
-      <Footer />
+      <BrowserRouter>
+        <Navbar />
+          <PageWrapper>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/course/register" element={<CourseRegisterPage />} />
+              <Route path="/course/:id" element={<CourseDetailsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </PageWrapper>
+        <Footer />
+      </BrowserRouter>
     </GlobalStateProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Trash } from "phosphor-react";
 import * as yup from "yup";
-
 import Card from "../../components/Card";
 import InputGroup from "../../components/InputGroup";
 import Button, { BUTTON_VARIANT } from "../../components/Button";
 import useCourseRegister from "../../hooks/useCourseRegister";
-
 import "./CourseRegisterPage.css";
 
 const schema = yup.object().shape({

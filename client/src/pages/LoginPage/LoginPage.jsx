@@ -1,65 +1,69 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import InputGroup from '../../components/InputGroup'
-import Button from '../../components/Button'
-import { useSetUserInfo } from '../../hooks/useUserInfo'
-import { apiService } from '../../services/api'
-import './LoginPage.css'
+import { useState } from 'react';
+import {useNavigate } from 'react-router-dom';
+import InputGroup from '../../components/InputGroup';
+import Button from '../../components/Button';
+import { useSetUserInfo } from '../../hooks/useUserInfo';
+import { apiService } from '../../services/api';
+import { LoginPageContainer,
+          LoginHeading, 
+          SigninButton, 
+          LoginCenterBox,
+          LoginForm } from './styles';
 
 function LoginPage () {
-  const navigate = useNavigate()
-  const setUserInfo = useSetUserInfo()
+  const navigate = useNavigate();
+  const setUserInfo = useSetUserInfo();
 
-  const [email, setEmail] = useState('')
-  const [showEmailHelper, setShowEmailHelper] = useState(false)
+  const [email, setEmail] = useState('');
+  const [showEmailHelper, setShowEmailHelper] = useState(false);
 
-  const [password, setPassword] = useState('')
-  const [showPasswordHelper, setShowPasswordHelper] = useState(false)
+  const [password, setPassword] = useState('');
+  const [showPasswordHelper, setShowPasswordHelper] = useState(false);
 
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChangeEmail = (event) => {
-    const newEmail = event.target.value
-    setEmail(newEmail)
-  }
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+  };
 
   const handleChangePassword = (event) => {
-    const newPassword = event.target.value
-    setPassword(newPassword)
-  }
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+  };
 
   const handleLoginAction = async () => {
-    setError(null)
-    setShowEmailHelper(!email)
-    setShowPasswordHelper(!password)
+    setError(null);
+    setShowEmailHelper(!email);
+    setShowPasswordHelper(!password);
     if (!email || !password) {
-      return
+      return;
     }
-    setLoading(true)
+    setLoading(true);
     const response = await apiService.get(
       `/users?email=${email}&password=${password}`
-    )
+    );
     if (response?.data?.length) {
-      const { name, isAdmin } = response.data[0]
+      const { name, isAdmin } = response.data[0];
       setUserInfo({
         name,
         isAdmin
-      })
-      navigate('/')
+      });
+      navigate('/');
     } else {
-      setUserInfo()
-      setError('Credenciais inválidas!')
+      setUserInfo();
+      setError('Credenciais inválidas!');
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
-    <div className="loginPageContainer">
-      <div className="loginCenterBox">
-        <h2 className="title">Acessar</h2>
+    <LoginPageContainer>
+      <LoginCenterBox>
+        <LoginHeading>Acessar</LoginHeading>
 
-        <div className="loginForm">
+        <LoginForm>
           <InputGroup
             type="text"
             placeholder="Seu e-mail"
@@ -76,7 +80,7 @@ function LoginPage () {
             onChange={handleChangePassword}
             helperText={showPasswordHelper ? 'Campo obrigatório' : ''}
           />
-        </div>
+        </LoginForm>
 
         {error && <p className="errorMessage">{error}</p>}
 
@@ -84,12 +88,12 @@ function LoginPage () {
           {loading ? 'Carregando...' : 'Entrar'}
         </Button>
 
-        <Link to="/signin" className="signinButton">
+        <SigninButton to="/signin">
           Cadastrar
-        </Link>
-      </div>
-    </div>
-  )
+        </SigninButton>
+      </LoginCenterBox>
+    </LoginPageContainer>
+  );
 }
 
-export default LoginPage
+export default LoginPage;

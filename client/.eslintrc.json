@@ -23,7 +23,8 @@
   ],
   "rules": {
     "prefer-const": "warn",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "semi":[2,"always"]
   },
   "settings": {
     "react": {
